@@ -13,15 +13,30 @@ function formatDate(iso) {
 export default function MessageCard({ message }) {
   return (
     <article className="msg-card">
-      <h3 className="msg-title">{message.title}</h3>
-      <p className="msg-body">{message.content}</p>
-      <div className="msg-meta">
-        <span className="who">
-          De <b>{message.author || 'Anônimo'}</b>
-          <br />
-          {formatDate(message.created_at)}
-        </span>
-        {message.spirit && <span className="spirit">{message.spirit}</span>}
+      {message.image_url && (
+        <div className="msg-image-wrap">
+          <img
+            className="msg-image"
+            src={message.image_url}
+            alt=""
+            loading="lazy"
+            onError={(e) => {
+              e.currentTarget.parentElement.style.display = 'none';
+            }}
+          />
+        </div>
+      )}
+      <div className="msg-card-body">
+        <h3 className="msg-title">{message.title}</h3>
+        <p className="msg-body">{message.content}</p>
+        <div className="msg-meta">
+          <span className="who">
+            De <b>{message.author || 'Anônimo'}</b>
+            <br />
+            {formatDate(message.created_at)}
+          </span>
+          {message.spirit && <span className="spirit">{message.spirit}</span>}
+        </div>
       </div>
     </article>
   );

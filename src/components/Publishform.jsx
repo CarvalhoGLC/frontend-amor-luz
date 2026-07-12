@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { createMessage } from '../api';
 
-const EMPTY_FORM = { title: '', content: '', author: '', spirit: '' };
+const EMPTY_FORM = { title: '', content: '', author: '', spirit: '', imageUrl: '' };
 
 export default function PublishForm({ token, onPublished, onLogout }) {
   const [form, setForm] = useState(EMPTY_FORM);
@@ -30,6 +30,7 @@ export default function PublishForm({ token, onPublished, onLogout }) {
         content,
         author: form.author.trim(),
         spirit: form.spirit.trim(),
+        image_url: form.imageUrl.trim(),
       });
       await onPublished();
       setForm(EMPTY_FORM);
@@ -113,6 +114,20 @@ export default function PublishForm({ token, onPublished, onLogout }) {
               onChange={updateField('spirit')}
             />
           </div>
+        </div>
+
+        <div className="field">
+          <label htmlFor="f-image">
+            URL da imagem <span className="hint">(opcional, aparece no topo do card)</span>
+          </label>
+          <input
+            id="f-image"
+            type="url"
+            maxLength={1000}
+            placeholder="https://exemplo.com/imagem.jpg"
+            value={form.imageUrl}
+            onChange={updateField('imageUrl')}
+          />
         </div>
 
         <button type="submit" className="submit-btn" disabled={submitting}>
