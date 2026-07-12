@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import MessageCard from './Messagecard';
+import MessageCard from './MessageCard';
 
-export default function Carousel({ messages }) {
+export default function Carousel({ messages, canDelete, onDelete }) {
   const [index, setIndex] = useState(0);
 
   // Mantém o índice dentro dos limites quando a lista de mensagens muda
@@ -46,7 +46,7 @@ export default function Carousel({ messages }) {
           >
             {messages.map((m) => (
               <div className="carousel-slide" key={m.id}>
-                <MessageCard message={m} />
+                <MessageCard message={m} canDelete={canDelete} onDelete={onDelete} />
               </div>
             ))}
           </div>

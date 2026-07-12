@@ -43,3 +43,14 @@ export async function createMessage(token, message) {
   }
   return data;
 }
+
+export async function deleteMessage(token, id) {
+  const res = await fetch(`${API_BASE_URL}/api/messages/${id}`, {
+    method: 'DELETE',
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!res.ok) {
+    const data = await parseJsonSafe(res);
+    throw new Error(data.error || 'Não foi possível excluir a mensagem.');
+  }
+}

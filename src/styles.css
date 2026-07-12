@@ -276,6 +276,17 @@
     clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%);
     z-index:2;
   }
+  .msg-delete-btn{
+    position:absolute; top:12px; right:12px; z-index:3;
+    width:32px; height:32px; border-radius:50%;
+    background:rgba(24,34,56,0.75); border:1px solid rgba(255,255,255,0.25);
+    color:#f2ded0; display:flex; align-items:center; justify-content:center;
+    cursor:pointer; transition:background .2s ease, border-color .2s ease;
+    font-family:'Jost',sans-serif; font-size:14px;
+  }
+  .msg-delete-btn:hover{ background:#7a3b34; border-color:#c98d84; }
+  .msg-delete-btn:disabled{ opacity:.6; cursor:default; }
+  .msg-delete-btn svg{ width:16px; height:16px; }
   .msg-image-wrap{
     width:100%; aspect-ratio:16/8; overflow:hidden; background:var(--parchment-dim);
   }

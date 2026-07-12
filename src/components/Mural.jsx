@@ -1,12 +1,18 @@
 import { useAuth } from '../hooks/useAuth';
 import { useMessages } from '../hooks/useMessages';
-import MaintainerGate from './Maintainergate';
-import PublishForm from './Publishform';
+import { deleteMessage } from '../api';
+import MaintainerGate from './MaintainerGate';
+import PublishForm from './PublishForm';
 import Carousel from './Carousel';
 
 export default function Mural() {
   const { token, isAuthenticated, login, logout } = useAuth();
   const { messages, loading, refresh } = useMessages();
+
+  async function handleDelete(id) {
+    await deleteMessage(token, id);
+    await refresh();
+  }
 
   return (
     <>
@@ -36,7 +42,11 @@ export default function Mural() {
           {loading ? (
             <div className="loading-row">Abrindo o mural...</div>
           ) : (
-            <Carousel messages={messages} />
+            <Carousel
+              messages={messages}
+              canDelete={isAuthenticated}
+              onDelete={handleDelete}
+            />
           )}
         </div>
       </section>
