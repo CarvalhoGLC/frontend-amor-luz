@@ -54,3 +54,37 @@ export async function deleteMessage(token, id) {
     throw new Error(data.error || 'Não foi possível excluir a mensagem.');
   }
 }
+
+export async function fetchVideos() {
+  const res = await fetch(`${API_BASE_URL}/api/videos`);
+  if (!res.ok) return [];
+  const data = await parseJsonSafe(res);
+  return Array.isArray(data) ? data : [];
+}
+
+export async function createVideo(token, video) {
+  const res = await fetch(`${API_BASE_URL}/api/videos`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(video),
+  });
+  const data = await parseJsonSafe(res);
+  if (!res.ok) {
+    throw new Error(data.error || 'Não foi possível adicionar o vídeo agora.');
+  }
+  return data;
+}
+
+export async function deleteVideo(token, id) {
+  const res = await fetch(`${API_BASE_URL}/api/videos/${id}`, {
+    method: 'DELETE',
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!res.ok) {
+    const data = await parseJsonSafe(res);
+    throw new Error(data.error || 'Não foi possível remover o vídeo.');
+  }
+}

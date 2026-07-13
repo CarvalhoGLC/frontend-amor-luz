@@ -310,7 +310,72 @@
   .msg-meta .who b{ color:#5c5540; font-weight:600; }
   .msg-meta .spirit{ font-style:italic; font-family:'Lora',serif; font-size:12.5px; color:#7a6f4d; }
 
+  .msg-read-more{
+    display:inline-flex; align-items:center; gap:6px;
+    background:none; border:none; cursor:pointer; padding:0 0 16px;
+    font-family:'Jost',sans-serif; font-weight:600; font-size:12.5px;
+    letter-spacing:.04em; text-transform:uppercase; color:#8a6d1f;
+  }
+  .msg-read-more:hover{ color:var(--gold); }
+  .msg-read-more svg{ width:14px; height:14px; transition:transform .15s ease; }
+  .msg-read-more:hover svg{ transform:translateX(2px); }
+
+  /* ---------- Tela de mensagem ampliada ---------- */
+  .message-detail{ padding:56px 24px 90px; min-height:100vh; }
+  .back-link{
+    display:inline-flex; align-items:center; gap:6px; margin-bottom:26px;
+    background:none; border:none; cursor:pointer;
+    font-family:'Jost',sans-serif; font-size:12.5px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--mist);
+  }
+  .back-link:hover{ color:var(--gold-soft); }
+  .back-link svg{ width:15px; height:15px; }
+
+  .message-detail-card{
+    background:var(--parchment); color:var(--charcoal);
+    border-radius:4px; overflow:hidden; max-width:720px; margin:0 auto;
+    box-shadow:0 28px 64px -22px rgba(0,0,0,0.55);
+  }
+  .msg-image-wrap.detail{ aspect-ratio:16/7; }
+  .message-detail-card .msg-card-body{ padding:36px clamp(22px,5vw,52px) 44px; }
+  .message-detail-title{
+    font-family:'Cormorant Garamond', serif; font-weight:600;
+    font-size:clamp(28px,4vw,38px); margin:0 0 14px; color:var(--charcoal);
+  }
+  .msg-meta.detail{
+    border-top:none; border-bottom:1px solid #ded2ac;
+    padding:0 0 20px; margin-bottom:22px;
+  }
+  .message-detail-body{
+    font-size:16.5px; line-height:1.85; color:#3c3626; white-space:pre-wrap; margin:0;
+  }
+
   .loading-row{ text-align:center; color:var(--mist-dim); font-family:'Jost',sans-serif; font-size:13px; padding:40px 0; }
+
+  /* ---------- Pilha de formulários do mantenedor ---------- */
+  .maintainer-stack{ display:flex; flex-direction:column; gap:20px; }
+
+  /* ---------- Seção de vídeos ---------- */
+  .videos-section{ padding:16px 24px 80px; }
+  .video-grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:22px;
+  }
+  .video-card{
+    background:var(--parchment); color:var(--charcoal);
+    border-radius:3px; overflow:hidden; position:relative;
+    box-shadow:0 16px 34px -18px rgba(0,0,0,0.55);
+    max-width:640px; margin:0 auto;
+  }
+  .video-embed{ width:100%; aspect-ratio:16/9; background:#000; }
+  .video-embed iframe{ width:100%; height:100%; border:0; display:block; }
+  .video-body{ padding:18px 20px 22px; }
+  .video-title{
+    font-family:'Cormorant Garamond', serif; font-weight:600; font-size:19px;
+    margin:0 0 8px; color:var(--charcoal); padding-right:16px;
+  }
+  .video-description{
+    font-size:13.5px; line-height:1.6; color:#4a4432; margin:0;
+  }
 
   footer{
     text-align:center; padding:34px 24px 46px; color:var(--mist-dim);

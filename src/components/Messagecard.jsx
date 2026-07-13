@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+const EXCERPT_LENGTH = 160;
+
 function formatDate(iso) {
   try {
     return new Date(iso).toLocaleDateString('pt-BR', {
@@ -12,8 +14,17 @@ function formatDate(iso) {
   }
 }
 
-export default function MessageCard({ message, canDelete, onDelete }) {
+function truncate(text, max) {
+  if (text.length <= max) return text;
+  // Corta na última quebra de palavra antes do limite, para não partir no meio.
+  const cut = text.slice(0, max);
+  const lastSpace = cut.lastIndexOf(' ');
+  return `${cut.slice(0, lastSpace > 0 ? lastSpace : max)}…`;
+}
+
+export default function MessageCard({ message, canDelete, onDelete, onOpen }) {
   const [deleting, setDeleting] = useState(false);
+  const isTruncated = message.content.length > EXCERPT_LENGTH;
 
   async function handleDelete() {
     const confirmed = window.confirm(
@@ -68,7 +79,17 @@ export default function MessageCard({ message, canDelete, onDelete }) {
       )}
       <div className="msg-card-body">
         <h3 className="msg-title">{message.title}</h3>
-        <p className="msg-body">{message.content}</p>
+        <p className="msg-body">{truncate(message.content, EXCERPT_LENGTH)}</p>
+
+        {isTruncated && (
+          <button type="button" className="msg-read-more" onClick={() => onOpen(message)}>
+            Ler mensagem completa
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 6l6 6-6 6" />
+            </svg>
+          </button>
+        )}
+
         <div className="msg-meta">
           <span className="who">
             De <b>{message.author || 'Anônimo'}</b>
