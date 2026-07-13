@@ -8,6 +8,7 @@ import { useAuth } from './hooks/useAuth';
 import { useMessages } from './hooks/useMessages';
 import { useVideos } from './hooks/useVideos';
 import { deleteMessage, deleteVideo } from './api';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App() {
   const auth = useAuth();
@@ -82,6 +83,8 @@ export default function App() {
         Orvalho — um mural de mensagens espíritas. A leitura é livre para
         todas as pessoas; a publicação é reservada ao mantenedor do site.
       </footer>
+
+      <Analytics/>
     </>
   );
 }
