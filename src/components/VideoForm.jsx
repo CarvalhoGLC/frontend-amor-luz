@@ -44,7 +44,10 @@ export default function VideoForm({ token, onPublished }) {
     <div className="form-card">
       <div className="form-head">
         <h2>Adicionar vídeo do YouTube</h2>
-        <p>Cole o link de um vídeo do YouTube para exibi-lo na seção de vídeos do mural.</p>
+        <p>
+          Cole o link de um vídeo avulso ou de uma playlist inteira do
+          YouTube — o tipo é reconhecido automaticamente pelo link.
+        </p>
       </div>
 
       <form onSubmit={handleSubmit}>
@@ -62,11 +65,13 @@ export default function VideoForm({ token, onPublished }) {
         </div>
 
         <div className="field">
-          <label htmlFor="v-url">Link do YouTube</label>
+          <label htmlFor="v-url">
+            Link do vídeo ou da playlist <span className="hint">(YouTube)</span>
+          </label>
           <input
             id="v-url"
             type="url"
-            placeholder="https://www.youtube.com/watch?v=..."
+            placeholder="https://www.youtube.com/watch?v=... ou .../playlist?list=..."
             value={form.youtubeUrl}
             onChange={updateField('youtubeUrl')}
             required

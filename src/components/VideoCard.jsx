@@ -1,11 +1,19 @@
 import { useState } from 'react';
 
+function getEmbedSrc(video) {
+  if (video.type === 'playlist' && video.playlist_id) {
+    return `https://www.youtube-nocookie.com/embed/videoseries?list=${video.playlist_id}`;
+  }
+  return `https://www.youtube-nocookie.com/embed/${video.video_id}`;
+}
+
 export default function VideoCard({ video, canDelete, onDelete }) {
   const [deleting, setDeleting] = useState(false);
+  const isPlaylist = video.type === 'playlist';
 
   async function handleDelete() {
     const confirmed = window.confirm(
-      `Remover o vídeo "${video.title}" da seção? Essa ação não pode ser desfeita.`
+      `Remover ${isPlaylist ? 'a playlist' : 'o vídeo'} "${video.title}" da seção? Essa ação não pode ser desfeita.`
     );
     if (!confirmed) return;
 
@@ -13,7 +21,7 @@ export default function VideoCard({ video, canDelete, onDelete }) {
     try {
       await onDelete(video.id);
     } catch (err) {
-      window.alert(err.message || 'Não foi possível remover o vídeo.');
+      window.alert(err.message || 'Não foi possível remover.');
       setDeleting(false);
     }
   }
@@ -26,8 +34,8 @@ export default function VideoCard({ video, canDelete, onDelete }) {
           className="msg-delete-btn"
           onClick={handleDelete}
           disabled={deleting}
-          aria-label={`Excluir vídeo "${video.title}"`}
-          title="Remover vídeo"
+          aria-label={`Excluir ${isPlaylist ? 'playlist' : 'vídeo'} "${video.title}"`}
+          title={isPlaylist ? 'Remover playlist' : 'Remover vídeo'}
         >
           {deleting ? (
             '...'
@@ -41,7 +49,7 @@ export default function VideoCard({ video, canDelete, onDelete }) {
 
       <div className="video-embed">
         <iframe
-          src={`https://www.youtube-nocookie.com/embed/${video.video_id}`}
+          src={getEmbedSrc(video)}
           title={video.title}
           loading="lazy"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -50,7 +58,10 @@ export default function VideoCard({ video, canDelete, onDelete }) {
       </div>
 
       <div className="video-body">
-        <h3 className="video-title">{video.title}</h3>
+        <div className="video-title-row">
+          <h3 className="video-title">{video.title}</h3>
+          {isPlaylist && <span className="video-badge">Playlist</span>}
+        </div>
         {video.description && <p className="video-description">{video.description}</p>}
       </div>
     </article>
