@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Hero from './components/Hero';
 import MaintainerArea from './components/MaintainerArea';
 import Mural from './components/Mural';
@@ -82,6 +83,8 @@ export default function App() {
         Orvalho — um mural de mensagens espíritas. A leitura é livre para
         todas as pessoas; a publicação é reservada ao mantenedor do site.
       </footer>
+
+      <Analytics />
     </>
   );
 }
