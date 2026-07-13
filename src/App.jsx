@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import Hero from './components/Hero';
-import MaintainerArea from './components/Maintainerarea';
+import MaintainerArea from './components/MaintainerArea';
 import Mural from './components/Mural';
-import VideosSection from './components/Videosection';
-import MessageDetail from './components/Messagedetail';
+import VideosSection from './components/VideosSection';
+import MessageDetail from './components/MessageDetail';
 import { useAuth } from './hooks/useAuth';
 import { useMessages } from './hooks/useMessages';
 import { useVideos } from './hooks/useVideos';
