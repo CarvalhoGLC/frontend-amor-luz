@@ -9,6 +9,7 @@ import { useMessages } from './hooks/useMessages';
 import { useVideos } from './hooks/useVideos';
 import { deleteMessage, deleteVideo } from './api';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 export default function App() {
   const auth = useAuth();
@@ -85,6 +86,7 @@ export default function App() {
       </footer>
 
       <Analytics/>
+      <SpeedInsights/>
     </>
   );
 }
