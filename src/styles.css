@@ -103,46 +103,60 @@
   }
   @keyframes rise{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
 
-  /* ---------- GATE (área do mantenedor) ---------- */
-  .gate-card{
-    background:rgba(246,240,224,0.05);
-    border:1px solid rgba(199,161,58,0.28);
-    border-radius:4px;
-    padding:26px clamp(18px,4vw,34px);
-    display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+  /* ---------- Menu flutuante do mantenedor (canto superior direito) ---------- */
+  .maintainer-menu{
+    position:fixed; top:18px; right:18px; z-index:50;
   }
-  .gate-icon{ flex:none; width:30px; height:30px; opacity:.8; }
-  .gate-text{ flex:1 1 260px; }
-  .gate-text p{ margin:0; font-size:14px; line-height:1.6; color:var(--mist); }
-  .gate-text .gate-title{
-    font-family:'Jost',sans-serif; font-size:11.5px; letter-spacing:.1em;
-    text-transform:uppercase; color:var(--gold-soft); margin:0 0 6px;
-  }
-  .gate-toggle{
-    flex:none; background:none; border:1px solid rgba(183,193,214,0.35);
+  .maintainer-toggle{
+    display:flex; align-items:center; gap:8px;
+    background:rgba(16,23,40,0.88); border:1px solid rgba(199,161,58,0.4);
     color:var(--mist); font-family:'Jost',sans-serif; font-size:12.5px;
-    letter-spacing:.04em; padding:9px 16px; border-radius:3px; cursor:pointer;
+    letter-spacing:.04em; padding:10px 16px; border-radius:999px; cursor:pointer;
+    backdrop-filter:blur(6px);
+    box-shadow:0 10px 26px -12px rgba(0,0,0,0.6);
     transition:border-color .2s ease, color .2s ease;
   }
-  .gate-toggle:hover{ border-color:var(--gold-soft); color:var(--gold-soft); }
+  .maintainer-toggle:hover{ border-color:var(--gold-soft); color:var(--gold-soft); }
+  .maintainer-toggle.active{ border-color:var(--gold-soft); color:var(--gold-soft); }
+  .maintainer-toggle svg{ width:16px; height:16px; flex:none; }
 
-  .gate-auth{
-    display:none; width:100%; margin-top:18px; gap:10px; flex-wrap:wrap;
-    padding-top:18px; border-top:1px solid rgba(183,193,214,0.18);
+  .maintainer-panel{
+    position:absolute; top:calc(100% + 10px); right:0;
+    width:min(400px, calc(100vw - 36px));
+    max-height:min(80vh, 720px); overflow-y:auto;
+    background:var(--ink-deep); border:1px solid rgba(199,161,58,0.3);
+    border-radius:8px; padding:6px;
+    box-shadow:0 24px 60px -18px rgba(0,0,0,0.7);
   }
-  .gate-auth.open{ display:flex; }
-  .gate-auth input{
-    flex:1 1 200px; font-family:'Lora',serif; font-size:16px;
+  .maintainer-panel .form-card{ box-shadow:none; }
+  .maintainer-panel .maintainer-stack{ gap:6px; }
+  .maintainer-panel .maintainer-stack .form-card + .form-card{
+    border-top:1px solid rgba(199,161,58,0.18); border-radius:0 0 4px 4px;
+  }
+
+  .maintainer-login{
+    padding:22px 20px 24px; display:flex; flex-direction:column; gap:12px;
+  }
+  .maintainer-login-title{
+    font-family:'Jost',sans-serif; font-size:11.5px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold-soft); margin:0;
+  }
+  .maintainer-login-desc{
+    font-family:'Lora',serif; font-size:13.5px; color:var(--mist); margin:0; line-height:1.55;
+  }
+  .maintainer-login input{
+    font-family:'Lora',serif; font-size:16px;
     background:rgba(255,255,255,0.05); border:1px solid rgba(183,193,214,0.3);
     color:var(--parchment); border-radius:3px; padding:10px 12px;
   }
-  .gate-auth input:focus{ outline:none; border-color:var(--gold-soft); }
-  .gate-auth button{
-    flex:none; font-family:'Jost',sans-serif; font-weight:600; font-size:12.5px;
+  .maintainer-login input:focus{ outline:none; border-color:var(--gold-soft); }
+  .maintainer-login button{
+    font-family:'Jost',sans-serif; font-weight:600; font-size:12.5px;
     letter-spacing:.06em; text-transform:uppercase; background:var(--gold-soft);
-    color:var(--ink-deep); border:none; padding:10px 18px; border-radius:3px; cursor:pointer;
+    color:var(--ink-deep); border:none; padding:11px 18px; border-radius:3px; cursor:pointer;
   }
-  .gate-error{ width:100%; font-family:'Jost',sans-serif; font-size:12.5px; color:#e08a7d; margin-top:8px; }
+  .maintainer-login button:disabled{ opacity:.6; cursor:default; }
+  .gate-error{ font-family:'Jost',sans-serif; font-size:12.5px; color:#e08a7d; margin-top:-4px; }
 
   .publish-header{ display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
   .logout-link{
@@ -418,10 +432,16 @@
 
     /* Portão do mantenedor e cabeçalho do formulário empilham em coluna,
        em vez de tentar caber tudo numa linha só. */
-    .gate-card{ flex-direction:column; align-items:flex-start; }
-    .gate-toggle{ width:100%; text-align:center; }
-    .gate-auth{ flex-direction:column; align-items:stretch; }
-    .gate-auth button{ width:100%; }
+    /* Menu do mantenedor: no celular, o painel vira quase um modal —
+       largura total (com respiro nas laterais) em vez de um dropdown
+       estreito ancorado no botão. */
+    .maintainer-menu{ top:12px; right:12px; }
+    .maintainer-toggle span{ display:none; }
+    .maintainer-toggle{ padding:10px; border-radius:50%; }
+    .maintainer-panel{
+      position:fixed; top:64px; right:12px; left:12px;
+      width:auto; max-height:calc(100vh - 84px);
+    }
 
     .publish-header{ flex-wrap:wrap; }
     .logout-link{ margin-left:auto; }

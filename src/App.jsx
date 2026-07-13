@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Hero from './components/Hero';
-import MaintainerArea from './components/MaintainerArea';
+import MaintainerMenu from './components/MaintainerMenu';
 import Mural from './components/Mural';
 import VideosSection from './components/VideosSection';
 import MessageDetail from './components/MessageDetail';
@@ -48,15 +48,10 @@ export default function App() {
     }
   }, [messagesState.messages, selectedMessage]);
 
-  if (selectedMessage) {
-    return <MessageDetail message={selectedMessage} onBack={closeMessage} />;
-  }
-
   return (
     <>
-      <Hero />
-
-      <MaintainerArea
+      {/* Fixo no canto superior direito, visível em qualquer tela do site. */}
+      <MaintainerMenu
         isAuthenticated={auth.isAuthenticated}
         token={auth.token}
         onLogin={auth.login}
@@ -65,28 +60,36 @@ export default function App() {
         onVideoPublished={videosState.refresh}
       />
 
-      <Mural
-        messages={messagesState.messages}
-        loading={messagesState.loading}
-        canDelete={auth.isAuthenticated}
-        onDelete={handleDeleteMessage}
-        onOpen={openMessage}
-      />
+      {selectedMessage ? (
+        <MessageDetail message={selectedMessage} onBack={closeMessage} />
+      ) : (
+        <>
+          <Hero />
 
-      <VideosSection
-        videos={videosState.videos}
-        loading={videosState.loading}
-        canDelete={auth.isAuthenticated}
-        onDelete={handleDeleteVideo}
-      />
+          <Mural
+            messages={messagesState.messages}
+            loading={messagesState.loading}
+            canDelete={auth.isAuthenticated}
+            onDelete={handleDeleteMessage}
+            onOpen={openMessage}
+          />
 
-      <footer>
-        Orvalho — um mural de mensagens espíritas. A leitura é livre para
-        todas as pessoas; a publicação é reservada ao mantenedor do site.
-      </footer>
+          <VideosSection
+            videos={videosState.videos}
+            loading={videosState.loading}
+            canDelete={auth.isAuthenticated}
+            onDelete={handleDeleteVideo}
+          />
 
-      <Analytics/>
-      <SpeedInsights/>
+          <footer>
+            Amor & Luz — um mural de mensagens espíritas. A leitura é livre para
+            todas as pessoas; a publicação é reservada ao mantenedor do site.
+          </footer>
+
+          <Analytics/>
+          <SpeedInsights/>
+        </>
+      )}
     </>
   );
 }
