@@ -1,6 +1,6 @@
-import MaintainerGate from './MaintainerGate';
-import PublishForm from './PublishForm';
-import VideoForm from './VideoForm';
+import MaintainerGate from './Maintainergate';
+import PublishForm from './Publishform';
+import VideoForm from './Videoform';
 
 export default function MaintainerArea({
   isAuthenticated,
