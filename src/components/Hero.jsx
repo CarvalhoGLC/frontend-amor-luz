@@ -26,7 +26,11 @@ export default function Hero() {
     <section className="hero">
       <div className="wrap">
         <Candle />
-        <div className="eyebrow">Mural de mensagens espíritas</div>
+        <div className="eyebrow">
+          <span className="eyebrow-rule" aria-hidden="true" />
+          Mural de mensagens espíritas
+          <span className="eyebrow-rule" aria-hidden="true" />
+        </div>
         <h1 className="site-title">Amor & Luz</h1>
         <p className="site-tagline">
           Um espaço para acolher e partilhar mensagens de consolo, fé e

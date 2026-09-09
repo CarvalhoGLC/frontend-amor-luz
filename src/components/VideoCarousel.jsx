@@ -13,6 +13,15 @@ export default function VideoCarousel({ videos, canDelete, onDelete }) {
   if (videos.length === 0) {
     return (
       <div className="empty-state">
+        <svg
+          className="empty-state-icon"
+          viewBox="0 0 48 48"
+          fill="none"
+          aria-hidden="true"
+        >
+          <rect x="6" y="12" width="36" height="24" rx="3" stroke="currentColor" strokeWidth="1.4" />
+          <path d="M20 19l10 5-10 5V19z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+        </svg>
         <p>Ainda não há vídeos indicados pelo mantenedor.</p>
       </div>
     );

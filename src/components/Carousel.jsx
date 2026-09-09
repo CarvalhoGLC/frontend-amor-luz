@@ -13,6 +13,20 @@ export default function Carousel({ messages, canDelete, onDelete, onOpen }) {
   if (messages.length === 0) {
     return (
       <div className="empty-state">
+        <svg
+          className="empty-state-icon"
+          viewBox="0 0 48 48"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M24 6c-4 6-7 10.5-7 15a7 7 0 0 0 14 0c0-4.5-3-9-7-15z"
+            stroke="currentColor"
+            strokeWidth="1.4"
+            strokeLinejoin="round"
+          />
+          <path d="M24 27v13M17 40h14" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+        </svg>
         <p>
           Ainda não há mensagens neste mural. Em breve o mantenedor publicará
           a primeira palavra de luz.

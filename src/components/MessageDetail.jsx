@@ -39,7 +39,9 @@ export default function MessageDetail({ message, onBack }) {
             <h1 className="message-detail-title">{message.title}</h1>
             <div className="msg-meta detail">
               <span className="who">
-                De <b>{message.author || 'Anônimo'}</b> · {formatDate(message.created_at)}
+                De <b>{message.author || 'Anônimo'}</b>
+                <br />
+                {formatDate(message.created_at)}
               </span>
               {message.spirit && <span className="spirit">{message.spirit}</span>}
             </div>
