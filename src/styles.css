@@ -73,6 +73,23 @@ a { color: inherit; text-decoration: none; }
 }
 .nav-links a:hover { color: var(--text-dark); }
 
+/* Estilização para substituir links <a> por <button> sem # na URL */
+.nav-links .nav-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.nav-links .nav-btn:hover {
+  color: var(--text-dark);
+}
+
 /* ---------- MENU MANTENEDOR ---------- */
 .maintainer-menu {
   position: relative !important;
@@ -186,6 +203,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   gap: 8px;
   transition: background .2s ease;
+  font-family: inherit;
 }
 .btn-primary:hover { background-color: var(--brand-green-hover); }
 
@@ -298,13 +316,14 @@ a { color: inherit; text-decoration: none; }
 
 .mural-controls {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin-bottom: 32px;
   gap: 16px;
   flex-wrap: wrap;
   width: 100%;
 }
+
 .search-box {
   display: flex;
   align-items: center;

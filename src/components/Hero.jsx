@@ -1,8 +1,17 @@
 import React from 'react';
 
 export default function Hero({ children }) {
+  const scrollTo = (id) => (e) => {
+    e.preventDefault();
+    if (id === 'inicio') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <header className="hero-section">
+    <header id="inicio" className="hero-section">
       <div className="wrap">
         <nav className="header-nav">
           <div className="brand-logo">
@@ -12,10 +21,10 @@ export default function Hero({ children }) {
 
           <div className="nav-and-actions">
             <div className="nav-links">
-              <a href="#inicio">Início</a>
-              <a href="#mural">Mural</a>
-              <a href="#videos">Vídeos</a>
-              <a href="#sobre">Sobre o espaço</a>
+              <button type="button" className="nav-btn" onClick={scrollTo('inicio')}>Início</button>
+              <button type="button" className="nav-btn" onClick={scrollTo('mural')}>Mural</button>
+              <button type="button" className="nav-btn" onClick={scrollTo('videos')}>Vídeos</button>
+              <button type="button" className="nav-btn" onClick={scrollTo('sobre')}>Sobre o espaço</button>
             </div>
 
             {children}
@@ -35,9 +44,9 @@ export default function Hero({ children }) {
               esclarecimento — como o orvalho que chega, sereno, a cada manhã.
             </p>
             <div className="hero-actions">
-              <a href="#mural" className="btn-primary">
+              <button type="button" className="btn-primary" onClick={scrollTo('mural')}>
                 Explorar o mural ↘
-              </a>
+              </button>
             </div>
             <blockquote className="hero-quote">
               <p>“Amai-vos e instrui-vos.”</p>
