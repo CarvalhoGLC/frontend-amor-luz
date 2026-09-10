@@ -34,9 +34,10 @@ a { color: inherit; text-decoration: none; }
 /* ---------- HEADER / NAV ---------- */
 .header-nav {
   display: flex;
-  align-items: center;
+  align-items: center; 
   justify-content: space-between;
   padding: 24px 0;
+  gap: 20px;
 }
 .brand-logo {
   display: flex;
@@ -57,11 +58,11 @@ a { color: inherit; text-decoration: none; }
 
 .nav-links {
   display: flex;
-  gap: 28px;
   align-items: center;
-  font-size: 13px;
-  color: var(--text-muted);
+  gap: 28px;
+  margin-left: auto; 
 }
+
 .nav-links a:hover { color: var(--text-dark); }
 
 /* ---------- HERO SECTION ---------- */
@@ -351,34 +352,32 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------- MENU MANTENEDOR (FIXO) ---------- */
 .maintainer-menu {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 100;
-}
-.maintainer-toggle {
-  background: var(--brand-green);
-  color: #FFF;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  z-index: 10;
 }
 
-/* 2. Ajuste do tamanho e largura do botão da Área do Mantenedor */
 .maintainer-toggle {
-  padding: 6px 14px;      /* Reduz o espaçamento interno (padding) */
-  font-size: 12px;        /* Deixa o texto levemente mais compacto */
-  gap: 6px;               /* Diminui a distância entre o ícone e o texto */
-  width: auto;            /* Garante que o botão não estique */
-  max-width: fit-content; /* Mantém a largura restrita estritamente ao conteúdo */
-  white-space: nowrap;    /* Impede que o texto quebre em duas linhas */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 999px;
+  background-color: var(--brand-green);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.maintainer-toggle svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 }
 
 /* Ajuste proporcional do ícone dentro do botão */
