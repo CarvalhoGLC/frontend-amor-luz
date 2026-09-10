@@ -169,20 +169,21 @@ a { color: inherit; text-decoration: none; }
   margin-left: 4px;
 }
 
-/* Formulários e Inputs do Mantenedor */
+/* Formulários e Inputs do Mantenedor (Com espaçamento forçado entre campos) */
 .maintainer-panel form {
   display: flex;
   flex-direction: column;
-  gap: 12px; /* Garante o espaçamento uniforme entre os campos de entrada */
+  gap: 16px !important; /* Força o espaçamento entre o 1º e 2º campo */
 }
 
 .maintainer-panel label {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   font-size: 12px;
   font-weight: 600;
   color: var(--text-dark);
+  margin-bottom: 0; /* Evita conflitos com o gap */
 }
 
 .maintainer-panel input[type="text"],
