@@ -48,20 +48,20 @@ export default function App() {
 
   return (
     <>
-      <MaintainerMenu
-        isAuthenticated={auth.isAuthenticated}
-        token={auth.token}
-        onLogin={auth.login}
-        onLogout={auth.logout}
-        onMessagePublished={messagesState.refresh}
-        onVideoPublished={videosState.refresh}
-      />
-
       {selectedMessage ? (
         <MessageDetail message={selectedMessage} onBack={closeMessage} />
       ) : (
         <>
-          <Hero />
+          <Hero>
+            <MaintainerMenu
+              isAuthenticated={auth.isAuthenticated}
+              token={auth.token}
+              onLogin={auth.login}
+              onLogout={auth.logout}
+              onMessagePublished={messagesState.refresh}
+              onVideoPublished={videosState.refresh}
+            />
+          </Hero>
 
           <Mural
             messages={messagesState.messages}
@@ -78,7 +78,6 @@ export default function App() {
             onDelete={handleDeleteVideo}
           />
 
-          {/* Seção Sobre este espaço baseada no Design */}
           <section id="sobre" className="about-section">
             <div className="wrap">
               <div className="about-grid">

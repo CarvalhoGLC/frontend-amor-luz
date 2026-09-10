@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Hero() {
+export default function Hero({ children }) {
   return (
     <header className="hero-section">
       <div className="wrap">
@@ -9,11 +9,18 @@ export default function Hero() {
             <span className="brand-name">Amor & Luz</span>
             <span className="brand-sub">Mural de Mensagens Escritas</span>
           </div>
-          <div className="nav-links">
-            <a href="#inicio">Início</a>
-            <a href="#mural">Mural</a>
-            <a href="#videos">Vídeos</a>
-            <a href="#sobre">Sobre o espaço</a>
+
+          {/* Agrupamos os links e o botão do mantenedor à direita */}
+          <div className="nav-and-actions">
+            <div className="nav-links">
+              <a href="#inicio">Início</a>
+              <a href="#mural">Mural</a>
+              <a href="#videos">Vídeos</a>
+              <a href="#sobre">Sobre o espaço</a>
+            </div>
+
+            {/* O botão do mantenedor renderiza aqui dentro */}
+            {children}
           </div>
         </nav>
 
