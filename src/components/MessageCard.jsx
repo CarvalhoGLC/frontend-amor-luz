@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const EXCERPT_LENGTH = 140;
+const EXCERPT_LENGTH = 180; // Aumentado levemente para acompanhar a expansão do card
 
 function formatDate(iso) {
   try {
@@ -23,6 +23,9 @@ function truncate(text, max) {
 
 export default function MessageCard({ message, canDelete, onDelete, onOpen }) {
   const [deleting, setDeleting] = useState(false);
+
+  // Mapeia o campo da imagem considerando diferentes nomes do backend
+  const imageUrl = message.imageUrl || message.image_url || message.image;
 
   async function handleDelete() {
     const confirmed = window.confirm(
@@ -53,18 +56,29 @@ export default function MessageCard({ message, canDelete, onDelete, onOpen }) {
         </button>
       )}
 
-      <div className="msg-date">{formatDate(message.created_at)}</div>
-      <h3 className="msg-clean-title">{message.title}</h3>
-      <p className="msg-clean-excerpt">
-        “{truncate(message.content, EXCERPT_LENGTH)}”
-      </p>
+      {/* Exibe a foto da mensagem se houver uma URL informada */}
+      {imageUrl && (
+        <img
+          src={imageUrl}
+          alt={message.title}
+          className="msg-card-image"
+        />
+      )}
 
-      <button type="button" className="msg-link-action" onClick={() => onOpen(message)}>
-        Ler mensagem completa ➔
-      </button>
+      <div className="msg-content-wrapper">
+        <div className="msg-date">{formatDate(message.created_at)}</div>
+        <h3 className="msg-clean-title">{message.title}</h3>
+        <p className="msg-clean-excerpt">
+          “{truncate(message.content, EXCERPT_LENGTH)}”
+        </p>
 
-      <div className="msg-clean-footer">
-        DE {message.author ? message.author.toUpperCase() : 'VISITANTE DO MURAL'}
+        <button type="button" className="msg-link-action" onClick={() => onOpen(message)}>
+          Ler mensagem completa ➔
+        </button>
+
+        <div className="msg-clean-footer">
+          DE {message.author ? message.author.toUpperCase() : 'VISITANTE DO MURAL'}
+        </div>
       </div>
     </article>
   );
