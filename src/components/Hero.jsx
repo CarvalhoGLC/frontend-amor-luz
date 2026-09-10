@@ -1,15 +1,6 @@
 import React from 'react';
 
-export default function Hero({ children, onShareClick }) {
-  const handleShare = () => {
-    if (onShareClick) {
-      onShareClick();
-    } else {
-      // Caso não passe função via prop, faz scroll até o mural
-      document.getElementById('mural')?.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
+export default function Hero({ children }) {
   return (
     <header className="hero-section">
       <div className="wrap">
@@ -47,9 +38,6 @@ export default function Hero({ children, onShareClick }) {
               <a href="#mural" className="btn-primary">
                 Explorar o mural ↘
               </a>
-              <button type="button" className="btn-secondary" onClick={handleShare}>
-                Compartilhar luz ↗
-              </button>
             </div>
             <blockquote className="hero-quote">
               <p>“Amai-vos e instrui-vos.”</p>
