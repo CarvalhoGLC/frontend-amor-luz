@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const EXCERPT_LENGTH = 160;
+const EXCERPT_LENGTH = 140;
 
 function formatDate(iso) {
   try {
@@ -8,7 +8,7 @@ function formatDate(iso) {
       day: '2-digit',
       month: 'long',
       year: 'numeric',
-    });
+    }).toUpperCase();
   } catch {
     return '';
   }
@@ -16,7 +16,6 @@ function formatDate(iso) {
 
 function truncate(text, max) {
   if (text.length <= max) return text;
-  // Corta na última quebra de palavra antes do limite, para não partir no meio.
   const cut = text.slice(0, max);
   const lastSpace = cut.lastIndexOf(' ');
   return `${cut.slice(0, lastSpace > 0 ? lastSpace : max)}…`;
@@ -24,7 +23,6 @@ function truncate(text, max) {
 
 export default function MessageCard({ message, canDelete, onDelete, onOpen }) {
   const [deleting, setDeleting] = useState(false);
-  const isTruncated = message.content.length > EXCERPT_LENGTH;
 
   async function handleDelete() {
     const confirmed = window.confirm(
@@ -39,12 +37,10 @@ export default function MessageCard({ message, canDelete, onDelete, onOpen }) {
       window.alert(err.message || 'Não foi possível excluir a mensagem.');
       setDeleting(false);
     }
-    // Se der certo, o card some da lista quando o mural for atualizado —
-    // não precisamos resetar "deleting" nesse caso.
   }
 
   return (
-    <article className="msg-card">
+    <article className="msg-card-clean">
       {canDelete && (
         <button
           type="button"
@@ -52,52 +48,23 @@ export default function MessageCard({ message, canDelete, onDelete, onOpen }) {
           onClick={handleDelete}
           disabled={deleting}
           aria-label={`Excluir mensagem "${message.title}"`}
-          title="Excluir mensagem"
         >
-          {deleting ? (
-            '...'
-          ) : (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M4 7h16M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2m2 0v13a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V7h10z" />
-            </svg>
-          )}
+          ✕
         </button>
       )}
 
-      {message.image_url && (
-        <div className="msg-image-wrap">
-          <img
-            className="msg-image"
-            src={message.image_url}
-            alt=""
-            loading="lazy"
-            onError={(e) => {
-              e.currentTarget.parentElement.style.display = 'none';
-            }}
-          />
-        </div>
-      )}
-      <div className="msg-card-body">
-        <h3 className="msg-title">{message.title}</h3>
-        <p className="msg-body">{truncate(message.content, EXCERPT_LENGTH)}</p>
+      <div className="msg-date">{formatDate(message.created_at)}</div>
+      <h3 className="msg-clean-title">{message.title}</h3>
+      <p className="msg-clean-excerpt">
+        “{truncate(message.content, EXCERPT_LENGTH)}”
+      </p>
 
-        {isTruncated && (
-          <button type="button" className="msg-read-more" onClick={() => onOpen(message)}>
-            Ler mensagem completa
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M9 6l6 6-6 6" />
-            </svg>
-          </button>
-        )}
+      <button type="button" className="msg-link-action" onClick={() => onOpen(message)}>
+        Ler mensagem completa ➔
+      </button>
 
-        <div className="msg-meta">
-          <span className="who">
-            De <b>{message.author || 'Anônimo'}</b>
-            <br />
-            {formatDate(message.created_at)}
-          </span>
-          {message.spirit && <span className="spirit">{message.spirit}</span>}
-        </div>
+      <div className="msg-clean-footer">
+        DE {message.author ? message.author.toUpperCase() : 'VISITANTE DO MURAL'}
       </div>
     </article>
   );

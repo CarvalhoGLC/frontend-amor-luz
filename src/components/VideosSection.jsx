@@ -2,17 +2,14 @@ import VideoCarousel from './VideoCarousel';
 
 export default function VideosSection({ videos, loading, canDelete, onDelete }) {
   return (
-    <section className="videos-section">
+    <section id="videos" className="videos-section">
       <div className="wrap">
-        <div className="mural-head">
-          <h2>Vídeos</h2>
-          <span className="mural-count">
-            {videos.length === 0
-              ? ''
-              : videos.length === 1
-              ? '1 vídeo'
-              : `${videos.length} vídeos`}
-          </span>
+        <div className="section-header">
+          <div className="section-tag">▷ ESCUTAS PARA A JORNADA</div>
+          <h2 className="section-title">Vídeos para caminhar com calma</h2>
+          <p className="section-subtitle">
+            Conteúdos escolhidos pelo mantenedor para acompanhar o seu momento.
+          </p>
         </div>
 
         {loading ? (

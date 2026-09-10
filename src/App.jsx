@@ -29,16 +29,14 @@ export default function App() {
 
   function openMessage(message) {
     setSelectedMessage(message);
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function closeMessage() {
     setSelectedMessage(null);
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Se a mensagem aberta for excluída pelo mantenedor em outra aba/sessão,
-  // evita deixar a tela de detalhe apontando para algo que já não existe.
   useEffect(() => {
     if (
       selectedMessage &&
@@ -50,7 +48,6 @@ export default function App() {
 
   return (
     <>
-      {/* Fixo no canto superior direito, visível em qualquer tela do site. */}
       <MaintainerMenu
         isAuthenticated={auth.isAuthenticated}
         token={auth.token}
@@ -81,13 +78,38 @@ export default function App() {
             onDelete={handleDeleteVideo}
           />
 
-          <footer>
-            Amor & Luz — um mural de mensagens espíritas. A leitura é livre para
-            todas as pessoas; a publicação é reservada ao mantenedor do site.
+          {/* Seção Sobre este espaço baseada no Design */}
+          <section id="sobre" className="about-section">
+            <div className="wrap">
+              <div className="about-grid">
+                <img
+                  src="https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1000&auto=format&fit=crop"
+                  alt="Floresta e lago sereno"
+                  className="arch-image"
+                />
+                <div>
+                  <div className="section-tag">SOBRE ESTE ESPAÇO</div>
+                  <h2 className="section-title">
+                    Um lugar para respirar antes de seguir.
+                  </h2>
+                  <p className="hero-desc">
+                    Amor & Luz nasceu da vontade de guardar palavras que acolhem.
+                    Aqui, cada mensagem é uma pequena janela para a esperança — uma
+                    pausa para lembrar que a vida também pode ser lida com ternura.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <footer className="site-footer wrap">
+            <div className="brand-name" style={{ fontSize: '16px' }}>Amor & Luz</div>
+            <div className="footer-quote">Que toda palavra encontre um coração disposto a florescer.</div>
+            <div>© 2026 Amor & Luz</div>
           </footer>
 
-          <Analytics/>
-          <SpeedInsights/>
+          <Analytics />
+          <SpeedInsights />
         </>
       )}
     </>
