@@ -68,6 +68,11 @@ a { color: inherit; text-decoration: none; }
 .hero-section {
   padding: 40px 0 80px;
 }
+
+.hero-section {
+  padding-top: 60px; /* Aumenta a distância em relação ao cabeçalho no topo */
+}
+
 .hero-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -364,6 +369,22 @@ a { color: inherit; text-decoration: none; }
   gap: 8px;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* 2. Ajuste do tamanho e largura do botão da Área do Mantenedor */
+.maintainer-toggle {
+  padding: 6px 14px;      /* Reduz o espaçamento interno (padding) */
+  font-size: 12px;        /* Deixa o texto levemente mais compacto */
+  gap: 6px;               /* Diminui a distância entre o ícone e o texto */
+  width: auto;            /* Garante que o botão não estique */
+  max-width: fit-content; /* Mantém a largura restrita estritamente ao conteúdo */
+  white-space: nowrap;    /* Impede que o texto quebre em duas linhas */
+}
+
+/* Ajuste proporcional do ícone dentro do botão */
+.maintainer-toggle svg {
+  width: 14px;
+  height: 14px;
 }
 
 /* ---------- FOOTER ---------- */
