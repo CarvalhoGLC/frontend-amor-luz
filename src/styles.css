@@ -425,6 +425,99 @@ a { color: inherit; text-decoration: none; }
   color: var(--text-muted);
 }
 
+/* ---------- ESTRUTURA E ESTILOS DO CARROSSEL ---------- */
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  width: 100%;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 8px 4px;
+}
+
+/* Botões de Navegação (Setas) */
+.carousel-btn {
+  background: #FFF;
+  border: 1px solid var(--border-light);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-dark);
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.carousel-btn:hover:not(:disabled) {
+  background: var(--brand-green);
+  color: #FFF;
+  border-color: var(--brand-green);
+}
+
+.carousel-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.carousel-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Indicadores de Página (Dots) */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background-color: var(--border-light);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-dot.active {
+  background-color: var(--brand-green);
+  width: 24px;
+}
+
+/* Estabiliza a largura do card interno */
+.carousel-slide .msg-card-clean {
+  width: 100%;
+  max-width: 680px !important;
+  margin: 0 auto !important;
+}
+
 /* ---------- SOBRE ESTE ESPAÇO ---------- */
 .about-section {
   padding: 100px 0;
