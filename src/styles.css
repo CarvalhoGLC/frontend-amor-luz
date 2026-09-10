@@ -173,7 +173,7 @@ a { color: inherit; text-decoration: none; }
 .maintainer-panel form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 12px; /* Garante o espaçamento uniforme entre os campos de entrada */
 }
 
 .maintainer-panel label {
@@ -892,7 +892,6 @@ a { color: inherit; text-decoration: none; }
     padding: 0;
   }
 
-  /* Setas flutuantes ajustadas */
   .carousel-btn {
     width: 36px;
     height: 36px;
@@ -915,14 +914,12 @@ a { color: inherit; text-decoration: none; }
     padding: 4px 0;
   }
 
-  /* Aplicação do width total para evitar aperto lateral */
   .carousel-slide .msg-card-clean,
   .video-card {
     max-width: 100% !important;
     padding: 20px 16px;
   }
 
-  /* Alinhamento dos títulos e badges no card de vídeo no celular */
   .video-title-row {
     flex-direction: column;
     align-items: flex-start;
@@ -953,7 +950,6 @@ a { color: inherit; text-decoration: none; }
     max-height: 250px;
   }
 
-  /* Modal do mantenedor em telas pequenas */
   .maintainer-panel {
     right: 50%;
     transform: translateX(50%);
