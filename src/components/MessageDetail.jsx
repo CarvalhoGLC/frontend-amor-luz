@@ -11,41 +11,46 @@ function formatDate(iso) {
 }
 
 export default function MessageDetail({ message, onBack }) {
+  const imageUrl = message.imageUrl || message.image_url || message.image;
+
   return (
     <section className="message-detail">
       <div className="wrap">
-        <button type="button" className="back-link" onClick={onBack}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <button type="button" className="back-btn" onClick={onBack}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M15 6l-6 6 6 6" />
           </svg>
           Voltar ao mural
         </button>
 
-        <article className="message-detail-card">
-          {message.image_url && (
-            <div className="msg-image-wrap detail">
-              <img
-                className="msg-image"
-                src={message.image_url}
-                alt=""
-                onError={(e) => {
-                  e.currentTarget.parentElement.style.display = 'none';
-                }}
-              />
-            </div>
+        <article className="detail-card">
+          {imageUrl && (
+            <img
+              className="detail-image"
+              src={imageUrl}
+              alt={message.title}
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
+            />
           )}
 
-          <div className="msg-card-body">
-            <h1 className="message-detail-title">{message.title}</h1>
-            <div className="msg-meta detail">
-              <span className="who">
-                De <b>{message.author || 'Anônimo'}</b>
-                <br />
-                {formatDate(message.created_at)}
-              </span>
-              {message.spirit && <span className="spirit">{message.spirit}</span>}
+          <div className="detail-body">
+            <h1 className="detail-title">{message.title}</h1>
+            
+            <div className="detail-meta">
+              <span>DE {message.author ? message.author.toUpperCase() : 'ANÔNIMO'}</span>
+              <span>•</span>
+              <span>{formatDate(message.created_at)}</span>
+              {message.spirit && (
+                <>
+                  <span>•</span>
+                  <span>{message.spirit}</span>
+                </>
+              )}
             </div>
-            <p className="message-detail-body">{message.content}</p>
+
+            <div className="detail-content">{message.content}</div>
           </div>
         </article>
       </div>
