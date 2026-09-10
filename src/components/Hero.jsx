@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function Hero({ children }) {
+  // Remove a hash da URL assim que o componente carrega
+  useEffect(() => {
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  }, []);
+
   const scrollTo = (id) => (e) => {
     e.preventDefault();
+
+    // Garante que a hashtag seja removida do navegador ao clicar
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+
     if (id === 'inicio') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
@@ -11,7 +24,7 @@ export default function Hero({ children }) {
   };
 
   return (
-    <header id="inicio" className="hero-section">
+    <header className="hero-section">
       <div className="wrap">
         <nav className="header-nav">
           <div className="brand-logo">
