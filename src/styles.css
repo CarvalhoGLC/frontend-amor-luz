@@ -147,7 +147,7 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--font-serif);
   color: var(--text-dark);
   margin-top: 0;
-  margin-bottom: 8px;
+  margin-bottom: 6px; /* Reduzido de 8px para 6px */
   font-weight: 500;
 }
 
@@ -157,8 +157,9 @@ a { color: inherit; text-decoration: none; }
 .maintainer-panel p {
   font-size: 13px;
   color: var(--text-muted);
-  line-height: 1.5;
-  margin-bottom: 16px;
+  line-height: 1.4;
+  margin-top: 0;
+  margin-bottom: 14px; /* Reduzido de 16px para 14px */
 }
 
 /* Formulários e Inputs do Mantenedor */
