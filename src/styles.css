@@ -186,6 +186,27 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 0; /* Evita conflitos com o gap */
 }
 
+/* ESPAÇAMENTO ENTRE CAMPOS DO JSX (row2 e field) */
+.maintainer-panel .row2 {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+
+.maintainer-panel .field {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  margin-bottom: 0 !important;
+}
+
+.maintainer-panel .field label {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--text-dark) !important;
+  margin-bottom: 0 !important;
+}
+
 .maintainer-panel input[type="text"],
 .maintainer-panel input[type="password"],
 .maintainer-panel input[type="url"],
