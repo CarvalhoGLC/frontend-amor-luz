@@ -1,6 +1,15 @@
 import React from 'react';
 
-export default function Hero({ children }) {
+export default function Hero({ children, onShareClick }) {
+  const handleShare = () => {
+    if (onShareClick) {
+      onShareClick();
+    } else {
+      // Caso não passe função via prop, faz scroll até o mural
+      document.getElementById('mural')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <header className="hero-section">
       <div className="wrap">
@@ -10,7 +19,6 @@ export default function Hero({ children }) {
             <span className="brand-sub">Mural de Mensagens Escritas</span>
           </div>
 
-          {/* Agrupamos os links e o botão do mantenedor à direita */}
           <div className="nav-and-actions">
             <div className="nav-links">
               <a href="#inicio">Início</a>
@@ -19,7 +27,6 @@ export default function Hero({ children }) {
               <a href="#sobre">Sobre o espaço</a>
             </div>
 
-            {/* O botão do mantenedor renderiza aqui dentro */}
             {children}
           </div>
         </nav>
@@ -40,7 +47,7 @@ export default function Hero({ children }) {
               <a href="#mural" className="btn-primary">
                 Explorar o mural ↘
               </a>
-              <button className="btn-secondary">
+              <button type="button" className="btn-secondary" onClick={handleShare}>
                 Compartilhar luz ↗
               </button>
             </div>
