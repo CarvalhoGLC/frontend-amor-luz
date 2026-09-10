@@ -147,7 +147,7 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--font-serif);
   color: var(--text-dark);
   margin-top: 0;
-  margin-bottom: 6px; /* Reduzido de 8px para 6px */
+  margin-bottom: 6px;
   font-weight: 500;
 }
 
@@ -159,13 +159,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--text-muted);
   line-height: 1.4;
   margin-top: 0;
-  margin-bottom: 14px; /* Reduzido de 16px para 14px */
-}
-
-/* Afasta o botão 'Sair' do título 'Título' logo abaixo */
-.maintainer-panel .btn-logout {
-  margin-bottom: 12px;
-  align-self: flex-start;
+  margin-bottom: 14px;
 }
 
 /* Garante que textos dentro de parenteses no label fiquem na mesma linha e sutis */
@@ -250,9 +244,13 @@ a { color: inherit; text-decoration: none; }
   font-size: 12px;
   cursor: pointer;
   transition: all 0.2s;
+  display: inline-block;
+  margin-bottom: 20px;
+  align-self: flex-start;
 }
 
-.maintainer-panel .btn-logout:hover {
+.maintainer-panel .btn-logout:hover,
+.maintainer-panel button:not([type="submit"]):hover {
   background: #FFF;
   color: var(--text-dark);
   border-color: var(--text-dark);

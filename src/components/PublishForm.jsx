@@ -90,7 +90,7 @@ export default function PublishForm({ token, onPublished, onLogout }) {
         <div className="row2">
           <div className="field">
             <label htmlFor="f-author">
-              Seu nome <span className="hint">(ou "anônimo")</span>
+              Seu nome
             </label>
             <input
               id="f-author"
@@ -103,7 +103,7 @@ export default function PublishForm({ token, onPublished, onLogout }) {
           </div>
           <div className="field">
             <label htmlFor="f-spirit">
-              Mentor espiritual <span className="hint">(opcional)</span>
+              Mentor espiritual
             </label>
             <input
               id="f-spirit"
@@ -118,7 +118,7 @@ export default function PublishForm({ token, onPublished, onLogout }) {
 
         <div className="field">
           <label htmlFor="f-image">
-            URL da imagem <span className="hint">(opcional, aparece no topo do card)</span>
+            URL da imagem
           </label>
           <input
             id="f-image"

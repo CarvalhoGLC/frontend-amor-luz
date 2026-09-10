@@ -66,7 +66,7 @@ export default function VideoForm({ token, onPublished }) {
 
         <div className="field">
           <label htmlFor="v-url">
-            Link do vídeo ou da playlist <span className="hint">(YouTube)</span>
+            Link do vídeo ou da playlist
           </label>
           <input
             id="v-url"
@@ -80,7 +80,7 @@ export default function VideoForm({ token, onPublished }) {
 
         <div className="field">
           <label htmlFor="v-desc">
-            Descrição <span className="hint">(opcional)</span>
+            Descrição
           </label>
           <textarea
             id="v-desc"
